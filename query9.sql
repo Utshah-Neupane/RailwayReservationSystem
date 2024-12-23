@@ -1,0 +1,12 @@
+.mode table
+.header on
+
+
+--9.List name of passengers that are traveling on Thursdays in ascending order.
+SELECT P.FNAME, P.LNAME, T.TRAIN_NAME, S.TRAIN_DAY 
+FROM PASSENGER P 
+JOIN BOOKED B ON P.SSN = B.PASSENGER_SSN 
+JOIN TRAIN T ON B.TRAIN_NUMBER = T.TRAIN_NUMBER 
+JOIN TRAIN_STATUS S ON TRIM(S.TRAIN_NAME) = TRIM(T.TRAIN_NAME) 
+WHERE B.TICKET_STATUS = 'Booked' AND S.TRAIN_DAY = 'Thursday' 
+ORDER BY P.FNAME ASC, P.LNAME ASC; 
